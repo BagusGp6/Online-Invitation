@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Invitation</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .font-dancing { font-family: 'Dancing Script', cursive; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        body { scroll-behavior: smooth; }
+        /* Floating Music Control */
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1010;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #374151; /* gray-800 */
+            color: white;
+            display: none; /* Hidden initially */
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+        #music-control:hover {
+            background-color: #6b7280; /* gray-500 */
+            color: #374151;
+        }
+        #music-control.playing {
+            background-color: #10b981; /* green-500 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen w-full overflow-x-hidden flex flex-col items-center text-center">
+    <!-- Registration Form Section -->
+    <section id="registration" class="bg-white min-h-screen w-full flex flex-col justify-center items-center p-8">
+        <div class="bg-gray-200 rounded-2xl shadow-2xl p-8 max-w-md w-full">
+            <h1 class="font-playfair text-3xl md:text-4xl text-gray-800 mb-6">Registrasi Undangan</h1>
+            <p class="text-gray-600 mb-6">Silakan isi formulir untuk masuk ke undangan pernikahan Conrad & Belly.</p>
+            <form id="reg-form" class="space-y-4">
+                <input type="text" id="name" placeholder="Nama Lengkap" class="w-full p-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" required>
+                <input type="email" id="email" placeholder="Email" class="w-full p-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" required>
+                <select id="attendance" class="w-full p-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" required>
+                    <option value="">Konfirmasi Kehadiran</option>
+                    <option value="yes">Ya, Saya Akan Hadir</option>
+                    <option value="no">Maaf, Tidak Bisa Hadir</option>
+                </select>
+                <button type="submit" class="w-full bg-gray-800 text-white py-3 rounded-lg hover:bg-gray-700 transition-all duration-300 ease-in-out font-sans">Masuk ke Undangan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Wedding Invitation Section (Hidden Initially) -->
+    <div id="invitation" class="hidden bg-gradient-to-b from-gray-400 to-gray-600 min-h-screen w-full overflow-x-hidden flex flex-col items-center text-center">
+        <!-- Background Music -->
+        <audio id="wedding-music" loop preload="auto">
+            <source src="Elvis Presley - Can't Help Falling in Love (Lyrics).mp3" type="audio/mpeg"> <!-- Placeholder: Ganti dengan file musik Anda, e.g., wedding_music.mp3 -->
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- Floating Music Control -->
+        <div id="music-control">
+            <i id="music-icon" class="fas fa-play"></i>
+        </div>
+
+        <!-- Cover Section -->
+        <section class="bg-cover bg-center bg-no-repeat h-screen w-full flex flex-col justify-center items-center relative" style="background-image: url('bg cover.jpeg');">
+            <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+            <div class="relative z-10 space-y-6 p-8">
+                <p class="font-playfair text-4xl md:text-5xl text-white drop-shadow-lg">THE WEDDING OF</p>
+                <p class="font-dancing text-5xl md:text-6xl text-white drop-shadow-lg">CONRAD & BELLY</p>
+                <p class="font-playfair text-2xl md:text-3xl text-white bg-white bg-opacity-20 rounded-full py-3 px-6 shadow-lg">12 OCTOBER 2025</p>
+                <div class="p-5">
+                    <q class="font-dancing text-4xl md:text-4xl text-white drop-shadow-lg">da moram zivjeti i deset tosuca zivota, uvijek bih izabrala tebe</q>
+                </div>
+            </div>
+        </section>
+
+        <!-- Separator -->
+        <div class="w-full h-2 bg-gradient-to-r from-transparent via-white to-transparent"></div>
+
+        <!-- Message Section -->
+        <section class="bg-cover bg-center bg-no-repeat min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-8 space-y-8 md:space-y-0 md:space-x-12" style="background-image: url('bg cover 2.jpeg');">
+            <img src="isi bg cover 2.jpeg" alt="Couple Image" class="w-64 h-80 md:w-80 md:h-96 rounded-t-full shadow-2xl border-4 border-white">
+            <div class="max-w-lg md:max-w-xl">
+                <p class="text-black text-base md:text-lg bg-white bg-opacity-90 rounded-2xl p-6 shadow-lg leading-relaxed font-sans">
+                    With all our hearts, we are grateful. <br>
+                    Grateful to have found each other in this vast world,
+                    Grateful for the love that grew quietly, sincerely, and deeply,
+                    And grateful that today, we begin the rest of our lives — together.
+                    In each other, we have found not only love, but a best friend, a safe place, and a partner for all the days to come.
+                    As we step into this beautiful journey called marriage, we carry with us the memories that shaped us, the laughter that healed us, and the love that brought us here.
+                    "Marriage is not about finding someone to live with, but finding someone you can't imagine living without."
+                    Thank you to everyone who has stood by us, supported us, and celebrated this love. Our hearts are full, our souls are at peace, and our dreams are just beginning.
+                </p>
+                <div class="mt-6">
+                    <q class="font-dancing text-3xl md:text-4xl text-amber-100 block drop-shadow-lg">"True love never endings"</q>
+                    <p class="font-dancing text-xl md:text-2xl text-amber-100 mt-2">— Richard Bach</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Separator -->
+        <div class="w-full h-2 bg-gradient-to-r from-transparent via-white to-transparent"></div>
+
+        <!-- Bride & Groom Section -->
+        <section class="bg-cover bg-center bg-no-repeat min-h-screen w-full flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-16 p-8" style="background-image: url('background bride.jpeg');">
+            <div class="text-center">
+                <h2 class="font-playfair text-3xl md:text-4xl text-white mb-4 drop-shadow-lg">The Groom</h2>
+                <img src="the groom.jpeg" alt="Groom" class="w-64 h-80 md:w-80 md:h-96 rounded-t-full shadow-2xl border-4 border-white">
+            </div>
+            <div class="text-center">
+                <h2 class="font-playfair text-3xl md:text-4xl text-white mb-4 drop-shadow-lg">The Bride</h2>
+                <img src="the bride.jpeg" alt="Bride" class="w-64 h-80 md:w-80 md:h-96 rounded-t-full shadow-2xl border-4 border-white">
+            </div>
+        </section>
+
+        <!-- Separator -->
+        <div class="w-full h-2 bg-gradient-to-r from-transparent via-white to-transparent"></div>
+
+        <!-- Location Section -->
+        <section class="bg-cover bg-center bg-no-repeat min-h-screen w-full flex flex-col items-center justify-center p-8" style="background-image: url('background4.jpeg');">
+            <div class="bg-white bg-opacity-80 rounded-2xl p-6 shadow-2xl max-w-md">
+                <img src="Screenshot 2025-10-13 171106.png" alt="Location Map" class="rounded-xl w-full h-64 mb-4 shadow-lg">
+                <a href="https://maps.app.goo.gl/hh4V4MzqWUNXfLZt7" class="inline-block bg-gray-800 text-white py-3 px-6 rounded-full font-sans shadow-lg hover:bg-gray-600 transition-all duration-300 ease-in-out">Telusuri Lokasi</a>
+            </div>
+        </section>
+
+        <!-- Separator -->
+        <div class="w-full h-2 bg-gradient-to-r from-transparent via-white to-transparent"></div>
+
+        <!-- Rundown Section -->
+        <section class="bg-cover bg-center bg-no-repeat min-h-screen w-full flex items-center justify-center p-8" style="background-image: url('background5.jpeg');">
+            <div class="bg-white bg-opacity-90 rounded-2xl p-8 shadow-2xl max-w-2xl w-full">
+                <h1 class="font-playfair text-3xl md:text-4xl text-gray-800 mb-6">RUNDOWN ACARA</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="text-left">
+                        <li class="text-lg text-gray-700 bg-gray-100 p-4 rounded-lg shadow-md list-none"><strong>08:00 - 09:00:</strong> Kedatangan Tamu</li>
+                        <li class="text-lg text-gray-700 bg-gray-100 p-4 rounded-lg shadow-md list-none mt-2"><strong>09:00 - 10:00:</strong> Akad Nikah</li>
+                        <li class="text-lg text-gray-700 bg-gray-100 p-4 rounded-lg shadow-md list-none mt-2"><strong>10:00 - 11:00:</strong> Foto Bersama Keluarga</li>
+                    </div>
+                    <div class="text-left">
+                        <li class="text-lg text-gray-700 bg-gray-100 p-4 rounded-lg shadow-md list-none"><strong>11:00 - 13:00:</strong> Resepsi dan Makan Malam</li>
+                        <li class="text-lg text-gray-700 bg-gray-100 p-4 rounded-lg shadow-md list-none mt-2"><strong>13:00 - 14:00:</strong> Hiburan dan Tarian</li>
+                        <li class="text-lg text-gray-700 bg-gray-100 p-4 rounded-lg shadow-md list-none mt-2"><strong>14:00:</strong> Penutupan Acara</li>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Separator -->
+        <div class="w-full h-2 bg-gradient-to-r from-transparent via-white to-transparent"></div>
+
+        <!-- Prewed Gallery Section -->
+        <section class="bg-cover bg-center bg-no-repeat min-h-screen w-full flex flex-col items-center justify-center p-8" style="background-image: url('background6.jpeg');">
+            <div class="bg-white bg-opacity-90 rounded-2xl p-8 shadow-2xl max-w-4xl w-full">
+                <h1 class="font-playfair text-3xl md:text-4xl text-gray-800 mb-6">Gallery</h1>
+                <p class="text-lg text-gray-700 mb-6 leading-relaxed">Sweet memories form us, before the day comes.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <img src="prewed1.jpeg" alt="Prewed Photo 1" class="w-full h-48 object-cover rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <img src="prewed2.jpeg" alt="Prewed Photo 2" class="w-full h-48 object-cover rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <img src="prewed3.jpeg" alt="Prewed Photo 3" class="w-full h-48 object-cover rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <img src="prewed4.jpeg" alt="Prewed Photo 4" class="w-full h-48 object-cover rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <img src="prewed5.jpeg" alt="Prewed Photo 5" class="w-full h-48 object-cover rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <img src="prewed6.jpeg" alt="Prewed Photo 6" class="w-full h-48 object-cover rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <img src="prewed7.jpeg" alt="Prewed Photo 7" class="w-full h-48 object-cover rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <img src="prewed8.jpeg" alt="Prewed Photo 8" class="w-full h-48 object-cover rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
+                </div>
+            </div>
+        </section>
+
+        <!-- Separator -->
+        <div class="w-full h-2 bg-gradient-to-r from-transparent via-white to-transparent"></div>
+
+        <!-- Closing Section -->
+        <section class="bg-cover bg-center bg-no-repeat min-h-screen w-full flex items-center justify-center p-8" style="background-image: url('background6.jpeg');">
+            <div class="bg-white bg-opacity-90 rounded-2xl p-8 shadow-2xl max-w-2xl w-full">
+                <h1 class="font-playfair text-3xl md:text-4xl text-gray-800 mb-6">Closing</h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">Thank you for your presence and sincere prayers. May our marriage be the beginning of a life full of blessings and happiness. We look forward to sharing this moment with all of you. See you on our happy day!</p>
+                <p class="text-2xl md:text-3xl text-gray-800 italic font-dancing">With Love,<br>Conrad & Belly</p>
+            </div>
+        </section>
+
+        <!-- Separator -->
+        <div class="w-full h-2 bg-gradient-to-r from-transparent via-white to-transparent"></div>
+    </div>
+
+    <script>
+        document.getElementById('reg-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const attendance = document.getElementById('attendance').value;
+            if (name && email && attendance) {
+                // Hide registration and show invitation
+                document.getElementById('registration').classList.add('hidden');
+                document.getElementById('invitation').classList.remove('hidden');
+                // Show music control
+                document.getElementById('music-control').style.display = 'flex';
+                // Auto-play music after user interaction (form submit)
+                const audio = document.getElementById('wedding-music');
+                audio.play().then(() => {
+                    // If play succeeds, update control to playing state
+                    document.getElementById('music-icon').className = 'fas fa-pause';
+                    document.getElementById('music-control').classList.add('playing');
+                    isPlaying = true;
+                }).catch(error => {
+                    console.log('Auto-play blocked by browser. User can click the control to play.');
+                    // Keep icon as play
+                    isPlaying = false;
+                });
+                // Scroll to top
+                window.scrollTo(0, 0);
+            } else {
+                alert('Harap isi semua field!');
+            }
+        });
+
+        // Music Control Functionality
+        const musicControl = document.getElementById('music-control');
+        const musicIcon = document.getElementById('music-icon');
+        const audio = document.getElementById('wedding-music');
+        let isPlaying = false;
+
+        musicControl.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.className = 'fas fa-play';
+                musicControl.classList.remove('playing');
+            } else {
+                audio.play().catch(error => {
+                    console.log('Play blocked by browser.');
+                });
+                musicIcon.className = 'fas fa-pause';
+                musicControl.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
+</body>
+</html>
